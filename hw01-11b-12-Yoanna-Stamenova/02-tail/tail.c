@@ -20,8 +20,7 @@ int main(int argc, char *argv[])
 
         if (fd == -1)
         {
-            fprintf(stderr, "Error: Cannot open '%s' for reading: %s\n", argv[i], strerror(errno));
-            continue;
+        perror("open");
         }
 
         if (i == 1)
