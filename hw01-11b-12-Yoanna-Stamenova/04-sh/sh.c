@@ -16,22 +16,32 @@ int main()
             break;
         }
 
-        char *args[1024];
-        int n = 0;
-        for (char *p = line; *p != '\0'; p++)
+    char *args[1024];
+    int n = 0;
+    for (char *p = line; *p != '\0';)
+    {
+        while (*p == ' ' || *p == '\n')
         {
-            if (*p == ' ')
-            {
-                *p = '\0';
-                args[n++] = p + 1;
-            }
+            *p = '\0';
+            p++;
         }
-        args[n++] = NULL;
 
-        if (args[0] == NULL)
+        if (*p != '\0')
         {
-            continue;
+            args[n++] = p;
         }
+
+        while (*p != '\0' && *p != ' ' && *p != '\n')
+        {
+            p++;
+        }
+    }
+    args[n++] = NULL;
+
+    if (args[0] == NULL)
+    {
+        continue;
+    }
 
         int child_pid = fork();
         if (child_pid == -1)
