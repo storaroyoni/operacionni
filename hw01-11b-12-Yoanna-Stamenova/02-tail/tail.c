@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
   
     if (argc < 2)
     {
-        fprintf(stderr, "Usage: %s <file1> [file2] ...\n", argv[0]);
+        fprintf(stderr, "usage: %s <file1> [file2] ...\n", argv[0]);
         return EXIT_FAILURE;
     }
     for (int i = 1; i < argc; i++)
@@ -23,9 +23,8 @@ int main(int argc, char *argv[])
         perror("open");
         }
 
-        if (i == 1)
-        {
-            printf("==> %s <==\n", argv[i]);
+        if (i != 1){
+        printf("==> %s <==\n", argv[i]);
         }
 
         lseek(fd, -10 * sizeof(char), SEEK_END);
