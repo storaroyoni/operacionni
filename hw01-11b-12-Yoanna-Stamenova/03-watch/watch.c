@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        fprintf(stderr, "usage: %s <command> [arguments]\n", argv[0]);
+        fprintf(stderr, "Usage: %s <command> [arguments]\n", argv[0]);
         return EXIT_FAILURE;
     }
 
@@ -26,22 +26,19 @@ int main(int argc, char *argv[])
         child_pid = fork();
         if (child_pid == -1)
         {
-            fprintf(stderr, "fork: cannot allocate memory\n");
+            fprintf(stderr, "fork: Cannot allocate memory\n");
             continue;
         }
 
         if (child_pid == 0)
         {
-            // Child process
-            while (1)
-            {
-                execvp(command, args);
-                //perror("exec"); 
-                //exit(EXIT_FAILURE);
-            }
+            // child process
+            execvp(command, args);
+            perror("exec");
+            exit(EXIT_FAILURE);
         }
 
-        // Parent process
+        // parent process
         waitpid(child_pid, NULL, 0);
 
         sleep(2);
