@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
     Block currentBlock;
     for (int i = 0; i < 128; i++)
     {
-        if (lseek(fd, i * sizeof(Block), SEEK_SET) == -1)
+        /*if (lseek(fd, i * sizeof(Block), SEEK_SET) == -1)
         {
             perror("failed to move to the block :( )");
             return EXIT_FAILURE;
-        }
+        }*/
 
         if (read(fd, &currentBlock, sizeof(Block)) != sizeof(Block))
         {
@@ -46,8 +46,9 @@ int main(int argc, char *argv[])
             break;
         }
 
-        printf("%c %u\n", currentBlock.data, currentBlock.nextElementAddress);
-    }
+        printf("%c", currentBlock.data);
+        lseek(fd, currentBlock.nextElementAddress, SEEK_SET);
+      }
 
     close(fd);
     return EXIT_SUCCESS;
