@@ -29,11 +29,6 @@ int main(int argc, char *argv[])
     Block currentBlock;
     for (int i = 0; i < 128; i++)
     {
-        /*if (lseek(fd, i * sizeof(Block), SEEK_SET) == -1)
-        {
-            perror("failed to move to the block :( )");
-            return EXIT_FAILURE;
-        }*/
 
         if (read(fd, &currentBlock, sizeof(Block)) != sizeof(Block))
         {
