@@ -32,8 +32,7 @@ int main(int argc, char *argv[])
 
         if (child_pid == 0)
         {
-            // child process
-            execvp(command, args);
+            execvp(args[0], args);
             perror("exec");
             exit(EXIT_FAILURE);
         }
