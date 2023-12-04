@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
         child_pid = fork();
         if (child_pid == -1)
         {
-            fprintf(stderr, "fork: Cannot allocate memory\n");
+            perror("fork()");
             continue;
         }
 
